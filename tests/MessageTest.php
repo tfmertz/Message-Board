@@ -1,9 +1,34 @@
 <?php
 
+    /**
+        @backupGlobals disabled
+        @backupStaticAttribute disabled
+    */
+
     require_once 'src/Message.php';
+    require 'setup.config';
+
+    $DB = new PDO('pgsql:host=localhost;dbname=message_test', $DB_USER, $DB_PASS);
 
     class MessageTest extends PHPUnit_Framework_TestCase
     {
+        function tearDown() {
+            Message::deleteAll();
+        }
+
+        function test_save()
+        {
+            //arrange
+            $new_message = new Message("This is a message");
+
+            //act
+            $new_message->save();
+            $result = Message::getAll();
+
+            //assert
+            $this->assertEquals($new_message, $result[0]);
+
+        }
 
         function test_getText()
         {
@@ -40,6 +65,19 @@
 
             //assert
             $this->assertEquals(3, $result);
+        }
+
+        function test_setId()
+        {
+            //arrange
+            $new_message = new Message("Hello", 3);
+
+            //act
+            $new_message->setId(10);
+            $result = $new_message->getId();
+
+            //assert
+            $this->assertEquals(10, $result);
         }
     }
 
