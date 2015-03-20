@@ -12,6 +12,30 @@
       <p>
         A simple place to share quick info with your groups!
       </p>
+
+      <form action="/add_message" method="post">
+        <label for="message">Enter your message</label>
+        <input type="text" name="message" id="message" required>
+
+        <button type="submit">Add a message</button>
+      </form>
+
+      <hr>
+
+      {% for message in message_array %}
+
+        <div>
+          <p>
+            {{ message.getText() }}
+          </p>
+        </div>
+
+      {% endfor %}
     </div>
+
+    <form action="/delete_messages" method="post">
+      <button type="submit">Clear all messages</button>
+    </form>
+
   </body>
 </html>

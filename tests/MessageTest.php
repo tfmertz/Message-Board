@@ -30,6 +30,36 @@
 
         }
 
+        function test_getAll()
+        {
+            //arrange
+            $new_message = new Message("Message1");
+            $new_message2 = new Message("Message2");
+            $new_message->save();
+            $new_message2->save();
+
+            //act
+            $result = Message::getAll();
+
+            //assert
+            $this->assertEquals([$new_message, $new_message2], $result);
+        }
+
+        function test_deleteAll()
+        {
+            //arrange
+            $new_message = new Message("Message1");
+            $new_message->save();
+
+            //act
+            Message::deleteAll();
+
+            $result = Message::getAll();
+
+            //assert
+            $this->assertEquals([], $result);
+        }
+
         function test_getText()
         {
             //arrange
