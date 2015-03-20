@@ -1,0 +1,10 @@
+<?php
+
+    # When you clone the repo enter your local database username and password
+    # here and change this file name to setup.config, then import the message_db.sql
+    # file to recreate the database on your computer
+
+    $DB_USER = "<your username here";
+    $DB_PASS = "<your password here";
+
+ ?>
