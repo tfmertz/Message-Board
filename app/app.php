@@ -23,7 +23,7 @@
 
     $app->post("/add_message", function() use ($app) {
 
-        $new_message = new Message(htmlspecialchars($_POST['message']));
+        $new_message = new Message(pg_escape_string($_POST['message']));
         $new_message->save();
 
         $messages = Message::getAll();

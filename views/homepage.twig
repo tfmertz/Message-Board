@@ -3,21 +3,30 @@
 
 <html>
   <head>
+    <link rel="stylesheet" href="/css/normalize.css" media="all">
+    <link rel="stylesheet" href="/css/skeleton.css" media="all">
+    <link rel="stylesheet" href="/css/main.css" media="all">
     <title>Message Board</title>
   </head>
   <body>
     <div class="container">
       <h1>Welcome to Message Board!</h1>
 
-      <p>
+      <h5>
         A simple place to share quick info with your groups!
-      </p>
+      </h5>
 
       <form action="/add_message" method="post">
-        <label for="message">Enter your message</label>
-        <input type="text" name="message" id="message" required>
+        <div class="row">
+          <div class="eight columns">
+            <label for="message">Enter your message</label>
+            <textarea class="u-full-width" name="message" id="message" maxlength="250" rows="3" required></textarea>
+          </div>
 
-        <button type="submit">Add a message</button>
+          <div class="four columns">
+            <button type="submit" class="button-primary add-message">Add a message</button>
+          </div>
+        </div>
       </form>
 
       <hr>
@@ -31,11 +40,15 @@
         </div>
 
       {% endfor %}
-    </div>
 
-    <form action="/delete_messages" method="post">
-      <button type="submit">Clear all messages</button>
-    </form>
+
+      <form action="/delete_messages" method="post">
+        <button type="submit">Clear all messages</button>
+      </form>
+    </div>
+    <!-- end container -->
+
+
 
   </body>
 </html>
